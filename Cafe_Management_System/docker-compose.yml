@@ -1,34 +1,26 @@
-version: '3'
-services:
-  service1:
-    build: ./api-gateway
-    ports:
-      - "3000:3000"
-    networks:
-      - mynetwork
-
-  service2:
-    build: ./customer-service
-    ports:
-      - "80:80"
-    networks:
-      - mynetwork
-
-  service3:
-    build: ./inventory-service
-    ports:
-      - "80:80"
-    networks:
-      - mynetwork
-
-  service4:
-    build: ./menu-service
-    ports:
-      - "80:80"
-    networks:
-      - mynetwork
-
-
-
 networks:
-  mynetwork:
+default:
+name: CafeMS_App
+services:
+app: #node
+container_name: docker-node
+build: .
+ports:
+- "3000:3000"
+environment:
+- MONGO_URI=NODE_dbURL
+depends_on:
+- mongo
+networks:
+- default
+mongo:
+container_name: mongo
+image: mongo
+ports:
+- "3000:3000"
+volumes:
+- mongo_data:/data/db
+networks:
+- default
+volumes:
+mongo_data:
