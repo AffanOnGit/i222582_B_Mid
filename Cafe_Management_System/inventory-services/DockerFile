@@ -1,0 +1,17 @@
+FROM node:14
+WORKDIR D:\Github-Repos\i222582_B_Mid\Cafe_Management_System\inventory-services\index.js
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+ENV NAME World2
+
+CMD [ "node", "index.js" ]
+
+
+

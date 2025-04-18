@@ -1,0 +1,34 @@
+version: '3'
+services:
+  service1:
+    build: ./api-gateway
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+  service2:
+    build: ./customer-service
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
+
+  service3:
+    build: ./inventory-service
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
+
+  service4:
+    build: ./menu-service
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
+
+
+
+networks:
+  mynetwork:
